@@ -1,7 +1,8 @@
+package main.models;
 
 public interface IConta {
 	
-	void sacar(double valor);
+	Boolean sacar(double valor);
 	
 	void depositar(double valor);
 	

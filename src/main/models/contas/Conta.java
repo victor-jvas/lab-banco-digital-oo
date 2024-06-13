@@ -1,3 +1,7 @@
+package main.models.contas;
+
+import main.models.Cliente;
+import main.models.IConta;
 
 public abstract class Conta implements IConta {
 	
@@ -9,6 +13,10 @@ public abstract class Conta implements IConta {
 	protected double saldo;
 	protected Cliente cliente;
 
+	public Cliente getCliente() {
+		return cliente;
+	}
+
 	public Conta(Cliente cliente) {
 		this.agencia = Conta.AGENCIA_PADRAO;
 		this.numero = SEQUENCIAL++;
@@ -16,8 +24,15 @@ public abstract class Conta implements IConta {
 	}
 
 	@Override
-	public void sacar(double valor) {
-		saldo -= valor;
+	public Boolean sacar(double valor) {
+		if (valor > saldo) {
+			System.out.println("Saldo Insuficiente");
+			return false;
+		}else {
+			saldo -= valor;
+			System.out.println("Operacao executada com sucesso");
+			return true;
+		}
 	}
 
 	@Override
@@ -27,8 +42,8 @@ public abstract class Conta implements IConta {
 
 	@Override
 	public void transferir(double valor, IConta contaDestino) {
-		this.sacar(valor);
-		contaDestino.depositar(valor);
+		if(this.sacar(valor))
+			contaDestino.depositar(valor);
 	}
 
 	public int getAgencia() {

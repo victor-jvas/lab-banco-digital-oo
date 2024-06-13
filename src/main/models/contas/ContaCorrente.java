@@ -1,3 +1,6 @@
+package main.models.contas;
+
+import main.models.Cliente;
 
 public class ContaCorrente extends Conta {
 
@@ -7,7 +10,7 @@ public class ContaCorrente extends Conta {
 
 	@Override
 	public void imprimirExtrato() {
-		System.out.println("=== Extrato Conta Corrente ===");
+		System.out.println("=== Extrato main.models.contas.Conta Corrente ===");
 		super.imprimirInfosComuns();
 	}
 	
